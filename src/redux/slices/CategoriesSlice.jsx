@@ -4,13 +4,11 @@ import axios from "axios";
 const initialState = {
     allCategories: [],
     category: [],
-    products: [],
     loading: false,
     error: null,
 };
 
 const BASE_URL = "http://localhost:8080/api/category";
-const BASE_URL_PRODUCTS = "http://localhost:8080/api/products";
 
 export const fetchCategoryById = createAsyncThunk(
     "categories/fetchCategoryById",
@@ -30,14 +28,10 @@ export const fetchAllCategory = createAsyncThunk(
     }
 );
 
-export const addProducts = createAsyncThunk(
-    "categories/addProducts",
-    async (products) => {
-        const response = await axios.post(BASE_URL_PRODUCTS, products);
-        console.log("Gönderilen ürünler:", response.data);
-        return response.data;
-    }
-)
+
+
+
+
 
 export const addCategory = createAsyncThunk(
     "categories/addCategory",
@@ -80,10 +74,8 @@ const CategoriesSlice = createSlice({
                 state.loading = false;
                 state.allCategories = action.payload;
             })
-            .addCase(addProducts.fulfilled, (state,action) => {
-                state.loading = false;
-                state.products.push(action.payload)
-            })
+
+
     }
 });
 

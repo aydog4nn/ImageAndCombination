@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategory, fetchCategoryById, fetchAllCategory , addProducts} from "../redux/slices/CategoriesSlice.jsx";
+import { addCategory, fetchCategoryById, fetchAllCategory , } from "../redux/slices/CategoriesSlice.jsx";
+import {addProducts , fetchAllProduct , fetchProductsById} from "../redux/slices/ProductSlice.jsx";
 import Form from "react-bootstrap/Form";
 import { Button, Container } from "react-bootstrap";
+import CategoryDetails from "./CategoryDetails.jsx";
 
 function HomePage() {
     const dispatch = useDispatch();
 
-    // Kategori bilgileri için state
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
 
-    // Ürün bilgileri için state
     const [productData, setProductData] = useState({
         size: "",
         name: "",
@@ -23,6 +23,7 @@ function HomePage() {
 
     const category = useSelector((state) => state.categories.category);
     const allCategory = useSelector((state) => state.categories.allCategories);
+    const allProducts = useSelector(state => state.products.allProducts)
 
     // Burası kategori işlemleri için yapılan fonksiyon
     const handleCategorySubmit = (e) => {
@@ -40,7 +41,6 @@ function HomePage() {
     const handleProductSubmit = (e) => {
         e.preventDefault();
         console.log("Gönderilen Ürün:", productData);
-        // Ürün verisini göndermek için dispatch ile ilgili bir action eklenebilir
         setProductData({ size: "", name: "", material: "", brand: "", price: 0 });
         dispatch(addProducts(productData))
     };
@@ -177,6 +177,8 @@ function HomePage() {
 
             <button onClick={() => dispatch(fetchCategoryById(1))}>Kategori Getir</button>
             <button onClick={() => dispatch(fetchAllCategory())}>Bütün Kategorileri Getir</button>
+            <button onClick={() => dispatch(fetchAllProduct())}>Bütün Ürünleri Al</button>
+            <button onClick={() => dispatch(fetchProductsById(5))}>urun al</button>
         </Container>
     );
 }
