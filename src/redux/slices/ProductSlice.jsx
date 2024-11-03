@@ -25,7 +25,7 @@ export const fetchAllProduct = createAsyncThunk(
     "categories/fetchAllProduct",
     async () => {
         const response = await axios.get(BASE_URL_PRODUCTS);
-        console.log(response.data);
+        console.log(response.data)
         return response.data;
     }
 )
@@ -46,7 +46,11 @@ const ProductSlice = createSlice({
 
         name: "products",
         initialState,
-        reducers: {},
+        reducers: {
+            setSelectedProduct: (state, action) => {
+                state.selectedProduct = action.payload;
+            }
+        },
         extraReducers: (builder) => {
             builder
                 .addCase(addProducts.pending, (state) => {
@@ -89,5 +93,7 @@ const ProductSlice = createSlice({
 
     }
 )
+
+export const {setSelectedProduct} = ProductSlice.actions
 
 export default ProductSlice.reducer

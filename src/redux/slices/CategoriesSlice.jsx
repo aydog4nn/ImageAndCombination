@@ -29,10 +29,6 @@ export const fetchAllCategory = createAsyncThunk(
 );
 
 
-
-
-
-
 export const addCategory = createAsyncThunk(
     "categories/addCategory",
     async (category) => {
@@ -70,9 +66,16 @@ const CategoriesSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
+            .addCase(fetchAllCategory.pending, (state) => {
+                state.loading = true;
+            })
             .addCase(fetchAllCategory.fulfilled, (state, action) => {
                 state.loading = false;
                 state.allCategories = action.payload;
+            })
+            .addCase(fetchAllCategory.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
             })
 
 
