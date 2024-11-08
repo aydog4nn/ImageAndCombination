@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchProductsById, setSelectedProduct } from "../redux/slices/ProductSlice.jsx";
 
+
+
 function ProductDetails() {
     const { id } = useParams(); // URL'den ürün ID'sini al
     const dispatch = useDispatch();
