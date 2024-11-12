@@ -21,6 +21,7 @@ function ProductDetails() {
     const { name, size, material, brand, price } = selectedProduct;
 
     return (
+
         <div>
             <h2>{name}</h2>
             <p>Boyut: {size}</p>

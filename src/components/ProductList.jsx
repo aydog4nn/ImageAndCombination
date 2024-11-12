@@ -25,6 +25,7 @@ function ProductList() {
 
     return (
         <div className="d-flex gap-4 justify-content-center mt-5 bg-light ">
+
             {
                 allProducts && allProducts.map((product) => (
 

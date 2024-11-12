@@ -16,6 +16,9 @@ function Product( {product} ) {
     const navigate = useNavigate();
 
     return (
+
+        <div>
+
         <Card
             onClick={() => navigate(`/products/${id}`)}
             sx={{ maxWidth: 345 }}>
@@ -37,6 +40,7 @@ function Product( {product} ) {
                 </CardContent>
             </CardActionArea>
         </Card>
+        </div>
     );
 }
 
