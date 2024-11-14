@@ -5,6 +5,8 @@ import {addProducts, fetchAllProduct, fetchProductsById} from "../redux/slices/P
 import Form from "react-bootstrap/Form";
 import {Button, Container} from "react-bootstrap";
 import CategoryDetails from "./CategoryDetails.jsx";
+import images from "../images/indeksModel-Photoroom.png"
+import images2 from "../images/artificial-intelligence-ai-processor-chip-icon-symbol-for-graphic-design-logo-web-site-social-media-mobile-app-ui-illustration-free-vector-Photoroom.png"
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -13,12 +15,7 @@ function HomePage() {
     const [description, setDescription] = useState("");
 
     const [productData, setProductData] = useState({
-        size: "",
-        name: "",
-        material: "",
-        brand: "",
-        price: 0,
-        categoryId: 1
+        size: "", name: "", material: "", brand: "", price: 0, categoryId: 1
     });
 
     const category = useSelector((state) => state.categories.category);
@@ -48,8 +45,7 @@ function HomePage() {
     const handleProductChange = (e) => {
         const {name, value} = e.target;
         setProductData((prevData) => ({
-            ...prevData,
-            [name]: value,
+            ...prevData, [name]: value,
         }));
     };
 
@@ -65,47 +61,114 @@ function HomePage() {
 
     return (
 
-        <Container className="container" style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div style={{width: "100%"}}>
+
+            {/*<div style={{*/}
+            {/*    display: "flex",*/}
+            {/*    alignItems: "center",*/}
+            {/*    justifyContent: "center",*/}
+            {/*    width: "80%",*/}
+            {/*    margin: "0 auto"*/}
+            {/*}}>*/}
+            {/*    <div style={{*/}
+            {/*        width: "45%",*/}
+            {/*        height: "350px",*/}
+            {/*        display: "flex",*/}
+            {/*        alignItems: "center",*/}
+            {/*        justifyContent: "center",*/}
+            {/*        backgroundColor:"#376642",*/}
+            {/*        borderRight: "2px solid #f7e7d4",*/}
+            {/*        borderRadius:"10px"*/}
+            {/*    }}>Ahmet*/}
+            {/*    </div>*/}
+            {/*    <div style={{*/}
+            {/*        width: "45%",*/}
+            {/*        height: "350px",*/}
+            {/*        display: "flex",*/}
+            {/*        alignItems: "center",*/}
+            {/*        justifyContent: "center",*/}
+            {/*        backgroundColor:"#654520",*/}
+            {/*        borderRadius:"10px"*/}
+            {/*    }}>Eda*/}
+            {/*    </div>*/}
+
+            {/*</div>*/}
+
 
             <div style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "80%",
-                margin: "0 auto"
-            }}>
+                backgroundColor: "#f7e7d4", padding: "0px", margin: "0px"
+            }} className=" w-100 d-flex justify-content-around align-items-center">
                 <div style={{
-                    width: "45%",
-                    height: "350px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor:"#376642",
-                    borderRight: "2px solid #f7e7d4",
-                    borderRadius:"10px"
-                }}>Ahmet
+                    width:"10%",
+                    display:"flex",
+                    flexDirection:"column",
+                    gap:"20px"
+                }}>
+                    <div style={{
+                        marginLeft: "50px",
+                        borderRadius: "50%",
+                        width: "100px",
+                        backgroundColor: "#f9ead9",
+                        height: "100px",
+                        padding: "0px",
+                    }}>
+                        <img style={{
+                            width:"100px",
+                            height:"100px",
+                        }} src={images2} alt=""/>
+                    </div>
+                    <div style={{
+                        marginLeft:"50px",
+                        borderRadius:"50%",
+                        width:"100px",
+                        height:"100px",
+                        backgroundColor:"#376642"
+                    }}></div>
+                    <div style={{
+                        marginLeft:"50px",
+                        borderRadius:"50%",
+                        width:"100px",
+                        height:"100px",
+                        backgroundColor:"#376642"
+                    }}></div>
+                    <div style={{
+                        marginLeft:"50px",
+                        borderRadius:"50%",
+                        width:"100px",
+                        height:"100px",
+                        backgroundColor:"#376642"
+                    }}></div>
                 </div>
-                <div style={{
-                    width: "45%",
-                    height: "350px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor:"#654520",
-                    borderRadius:"10px"
-                }}>Eda
-                </div>
+                <img style={{
+                    display: "block",
+                    maxWidth: "100%",
+                    height: "auto",
+                    margin: 0,
+                    paddingTop: "40px",
+                    paddingLeft: "40px",
 
+                }} src={images} alt="model"/>
+
+                <div style={{
+                    paddingLeft: "20px",
+                    width: "30%",
+                    border: "1px solid black",
+                    height:"100%"
+                }}>
+                    <h1 style={{
+                        fontSize: "40px",
+                        textWrap: "wrap",
+                        textTransform: "uppercase",
+                        fontFamily: "'Platypi', 'serif'"
+                    }}>
+                        Yapay Zeka ile Tarzını Keşfet ve Kendi Modanı Yarat!
+                    </h1>
+                </div>
             </div>
 
-
-
-
-
-
-
-
-
+            <div style={{
+                height: "500px", backgroundColor: "red"
+            }}></div>
 
 
             {/*<h2>Kategori Ekle</h2>*/}
@@ -222,8 +285,7 @@ function HomePage() {
             {/*<button onClick={() => dispatch(fetchAllCategory())}>Bütün Kategorileri Getir</button>*/}
             {/*<button onClick={() => dispatch(fetchAllProduct())}>Bütün Ürünleri Al</button>*/}
             {/*<button onClick={() => dispatch(fetchProductsById(5))}>urun al</button>*/}
-        </Container>
-    );
+        </div>);
 }
 
 export default HomePage;

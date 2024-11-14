@@ -5,10 +5,7 @@ function App() {
 
 
     return (
-        <div style={{
-            backgroundColor: "#f7e7d4",
-            height: "100vh",
-        }}>
+        <div>
 
         <Header/>
         <Router />
