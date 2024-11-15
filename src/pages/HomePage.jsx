@@ -1,12 +1,13 @@
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addCategory, fetchCategoryById, fetchAllCategory,} from "../redux/slices/CategoriesSlice.jsx";
-import {addProducts, fetchAllProduct, fetchProductsById} from "../redux/slices/ProductSlice.jsx";
-import Form from "react-bootstrap/Form";
-import {Button, Container} from "react-bootstrap";
-import CategoryDetails from "./CategoryDetails.jsx";
+import {addCategory, fetchCategoryById,} from "../redux/slices/CategoriesSlice.jsx";
+import {addProducts} from "../redux/slices/ProductSlice.jsx";
+import {useRef} from "react";
 import images from "../images/indeksModel-Photoroom.png"
-import images2 from "../images/artificial-intelligence-ai-processor-chip-icon-symbol-for-graphic-design-logo-web-site-social-media-mobile-app-ui-illustration-free-vector-Photoroom.png"
+import images2 from "../images/1fd5e68d-0d64-4723-9b53-38894758cad3-Photoroom.png"
+import {Paper} from "@mui/material";
+import Box from "@mui/material/Box";
+
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -49,6 +50,18 @@ function HomePage() {
         }));
     };
 
+
+    const handleScrollDown = () => {
+        if (targetDivRef.current) {
+
+            window.scrollTo({
+                top: targetDivRef.current.offsetTop,
+                behavior: 'smooth',
+            });
+        }
+    };
+
+
     useEffect(() => {
         const fetchCategory = async () => {
             if (category.id) {
@@ -59,101 +72,37 @@ function HomePage() {
         fetchCategory();
     }, [dispatch, category.id]);
 
+    const targetDivRef = useRef(null);
+    const imageRef = useRef(null);
+
     return (
 
         <div style={{width: "100%"}}>
-
-            {/*<div style={{*/}
-            {/*    display: "flex",*/}
-            {/*    alignItems: "center",*/}
-            {/*    justifyContent: "center",*/}
-            {/*    width: "80%",*/}
-            {/*    margin: "0 auto"*/}
-            {/*}}>*/}
-            {/*    <div style={{*/}
-            {/*        width: "45%",*/}
-            {/*        height: "350px",*/}
-            {/*        display: "flex",*/}
-            {/*        alignItems: "center",*/}
-            {/*        justifyContent: "center",*/}
-            {/*        backgroundColor:"#376642",*/}
-            {/*        borderRight: "2px solid #f7e7d4",*/}
-            {/*        borderRadius:"10px"*/}
-            {/*    }}>Ahmet*/}
-            {/*    </div>*/}
-            {/*    <div style={{*/}
-            {/*        width: "45%",*/}
-            {/*        height: "350px",*/}
-            {/*        display: "flex",*/}
-            {/*        alignItems: "center",*/}
-            {/*        justifyContent: "center",*/}
-            {/*        backgroundColor:"#654520",*/}
-            {/*        borderRadius:"10px"*/}
-            {/*    }}>Eda*/}
-            {/*    </div>*/}
-
-            {/*</div>*/}
-
-
             <div style={{
-                backgroundColor: "#f7e7d4", padding: "0px", margin: "0px"
-            }} className=" w-100 d-flex justify-content-around align-items-center">
-                <div style={{
-                    width:"10%",
-                    display:"flex",
-                    flexDirection:"column",
-                    gap:"20px"
-                }}>
-                    <div style={{
-                        marginLeft: "50px",
-                        borderRadius: "50%",
-                        width: "100px",
-                        backgroundColor: "#f9ead9",
-                        height: "100px",
-                        padding: "0px",
-                    }}>
-                        <img style={{
-                            width:"100px",
-                            height:"100px",
-                        }} src={images2} alt=""/>
-                    </div>
-                    <div style={{
-                        marginLeft:"50px",
-                        borderRadius:"50%",
-                        width:"100px",
-                        height:"100px",
-                        backgroundColor:"#376642"
-                    }}></div>
-                    <div style={{
-                        marginLeft:"50px",
-                        borderRadius:"50%",
-                        width:"100px",
-                        height:"100px",
-                        backgroundColor:"#376642"
-                    }}></div>
-                    <div style={{
-                        marginLeft:"50px",
-                        borderRadius:"50%",
-                        width:"100px",
-                        height:"100px",
-                        backgroundColor:"#376642"
-                    }}></div>
-                </div>
-                <img style={{
-                    display: "block",
-                    maxWidth: "100%",
-                    height: "auto",
-                    margin: 0,
-                    paddingTop: "40px",
-                    paddingLeft: "40px",
+                backgroundColor: "#f7e7d4", padding: "0px", margin: "0px",
+                display: "flex", justifyContent: "center", alignItems: "center",
+                height: `${imageRef.current ? imageRef.current.height : "auto"}`
+            }}>
 
-                }} src={images} alt="model"/>
+                <img
+                    ref={imageRef}
+                    style={{
+                        display: "block",
+                        maxWidth: "100%",
+                        height: "auto",
+                        margin: 0,
+                        paddingTop: "40px",
+                        paddingLeft: "40px",
+                    }}
+                    src={images} alt="model"
+                />
 
                 <div style={{
                     paddingLeft: "20px",
+                    paddingRight: "20px",
                     width: "30%",
-                    border: "1px solid black",
-                    height:"100%"
+                    height: "100%",
+                    textAlign: "center"
                 }}>
                     <h1 style={{
                         fontSize: "40px",
@@ -163,128 +112,83 @@ function HomePage() {
                     }}>
                         Yapay Zeka ile Tarzını Keşfet ve Kendi Modanı Yarat!
                     </h1>
+                    <hr/>
+                    <p className="text-secondary">
+                        Yapay zeka teknolojisi sayesinde stilinizi analiz ediyor, yüz hatlarınıza ve kişisel
+                        tercihlerinize uygun kıyafet kombinleri öneriyoruz.
+                        Tarzınıza en uygun renkleri ve aksesuarları belirleyerek şıklığınızı bir üst seviyeye taşımanız
+                        için size rehberlik ediyoruz.
+                        Kendi stilinizi keşfedin ve giyiminize yeni bir soluk kazandırın!
+                    </p>
                 </div>
             </div>
 
+            {/* Aşağı ok butonu */}
             <div style={{
-                height: "500px", backgroundColor: "red"
+                position: "relative",
+                height: "100%",
+            }}>
+                <button
+                    onClick={handleScrollDown}
+                    style={{
+                        position: "fixed",
+                        bottom: "20px",
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "transparent",
+                        cursor: "pointer",
+                        fontSize: "30px",
+                        transition: "transform 0.3s ease, color 0.3s ease",
+                        border: "1px solid black",
+                        borderRadius: "50%",
+                        width: "50px",
+                        height: "50px",
+                        backgroundColor: "black",
+                        opacity: "0.6",  // Bu opaklık sadece butonun arka planına etkiler
+                    }}
+                >
+        <span
+            style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)", // Ok simgesini tam ortalayacak
+                color: "white", // Ok simgesinin rengini beyaz yapalım
+            }}
+        >
+            &#8595; {/* Aşağı ok simgesi */}
+        </span>
+                </button>
+            </div>
+
+            <div ref={targetDivRef} style={{
+                height: "auto", backgroundColor: "#376642", transition: "opacity 1s ease-in-out",
+
+            }}>
+                <div className="d-flex justify-content-around align-items-center text-center ">
+
+
+                    <img
+                        ref={imageRef}
+                        style={{
+
+                            display: "block",
+                            maxWidth: "100%",
+                            height: "auto",
+                            margin: 0,
+                            paddingTop: "40px",
+                            paddingLeft: "40px",
+
+                        }}
+                        src={images2} alt="model"
+                    />
+
+                </div>
+
+            </div>
+            <div style={{
+                height: "100px",
             }}></div>
-
-
-            {/*<h2>Kategori Ekle</h2>*/}
-            {/*<Form onSubmit={handleCategorySubmit}>*/}
-            {/*    <Form.Group className="mb-3" controlId="categoryName">*/}
-            {/*        <Form.Label>Kategori</Form.Label>*/}
-            {/*        <Form.Control*/}
-            {/*            value={name}*/}
-            {/*            onChange={(e) => setName(e.target.value)}*/}
-            {/*            type="text"*/}
-            {/*            placeholder="Kategori giriniz..."*/}
-            {/*            required*/}
-            {/*        />*/}
-            {/*    </Form.Group>*/}
-            {/*    <Form.Group className="mb-3" controlId="categoryDescription">*/}
-            {/*        <Form.Label>Açıklamayı giriniz</Form.Label>*/}
-            {/*        <Form.Control*/}
-            {/*            value={description}*/}
-            {/*            onChange={(e) => setDescription(e.target.value)}*/}
-            {/*            as="textarea"*/}
-            {/*            rows={3}*/}
-            {/*            required*/}
-            {/*        />*/}
-            {/*    </Form.Group>*/}
-            {/*    <Button variant="primary" type="submit">*/}
-            {/*        Ekle*/}
-            {/*    </Button>*/}
-            {/*</Form>*/}
-
-            {/*<h2>Ürün Ekle</h2>*/}
-            {/*<Form onSubmit={handleProductSubmit}>*/}
-            {/*    <Form.Group className="mb-3" controlId="productSize">*/}
-            {/*        <Form.Label>Size</Form.Label>*/}
-            {/*        <Form.Control*/}
-            {/*            type="text"*/}
-            {/*            placeholder="Size giriniz..."*/}
-            {/*            name="size"*/}
-            {/*            value={productData.size}*/}
-            {/*            onChange={handleProductChange}*/}
-            {/*        />*/}
-            {/*    </Form.Group>*/}
-
-            {/*    <Form.Group className="mb-3" controlId="productName">*/}
-            {/*        <Form.Label>Ürün Adı</Form.Label>*/}
-            {/*        <Form.Control*/}
-            {/*            type="text"*/}
-            {/*            placeholder="Ürün adı giriniz..."*/}
-            {/*            name="name"*/}
-            {/*            value={productData.name}*/}
-            {/*            onChange={handleProductChange}*/}
-            {/*        />*/}
-            {/*    </Form.Group>*/}
-
-            {/*    <Form.Group className="mb-3" controlId="productMaterial">*/}
-            {/*        <Form.Label>Malzeme</Form.Label>*/}
-            {/*        <Form.Control*/}
-            {/*            type="text"*/}
-            {/*            placeholder="Malzeme giriniz..."*/}
-            {/*            name="material"*/}
-            {/*            value={productData.material}*/}
-            {/*            onChange={handleProductChange}*/}
-            {/*        />*/}
-            {/*    </Form.Group>*/}
-
-            {/*    <Form.Group className="mb-3" controlId="productBrand">*/}
-            {/*        <Form.Label>Marka</Form.Label>*/}
-            {/*        <Form.Control*/}
-            {/*            type="text"*/}
-            {/*            placeholder="Marka giriniz..."*/}
-            {/*            name="brand"*/}
-            {/*            value={productData.brand}*/}
-            {/*            onChange={handleProductChange}*/}
-            {/*        />*/}
-            {/*    </Form.Group>*/}
-
-            {/*    <Form.Group className="mb-3" controlId="productPrice">*/}
-            {/*        <Form.Label>Fiyat</Form.Label>*/}
-            {/*        <Form.Control*/}
-            {/*            type="number"*/}
-            {/*            placeholder="Fiyat giriniz..."*/}
-            {/*            name="price"*/}
-            {/*            value={productData.price}*/}
-            {/*            onChange={handleProductChange}*/}
-            {/*        />*/}
-            {/*    </Form.Group>*/}
-            {/*    <Form.Group controlId="productCategoryId">*/}
-            {/*        <Form.Label>Kategori Seçin</Form.Label>*/}
-            {/*        <Form.Control*/}
-            {/*            as="select"*/}
-            {/*            name="categoryId"*/}
-            {/*            value={productData.categoryId}*/}
-            {/*            onChange={handleProductChange}*/}
-            {/*        >*/}
-            {/*            {allCategory.map((category) => (*/}
-            {/*                <option key={category.id} value={category.id}>*/}
-            {/*                    {category.name}*/}
-            {/*                </option>*/}
-            {/*            ))}*/}
-            {/*        </Form.Control>*/}
-            {/*    </Form.Group>*/}
-            {/*    <Button variant="primary" type="submit">*/}
-            {/*        Ürün Ekle*/}
-            {/*    </Button>*/}
-            {/*</Form>*/}
-
-            {/*<div>*/}
-            {/*    <h2>Kategoriler</h2>*/}
-            {/*    <div>{category.name}</div>*/}
-            {/*    <div>{category.description}</div>*/}
-            {/*</div>*/}
-
-
-            {/*<button onClick={() => dispatch(fetchCategoryById(1))}>Kategori Getir</button>*/}
-            {/*<button onClick={() => dispatch(fetchAllCategory())}>Bütün Kategorileri Getir</button>*/}
-            {/*<button onClick={() => dispatch(fetchAllProduct())}>Bütün Ürünleri Al</button>*/}
-            {/*<button onClick={() => dispatch(fetchProductsById(5))}>urun al</button>*/}
         </div>);
 }
 
