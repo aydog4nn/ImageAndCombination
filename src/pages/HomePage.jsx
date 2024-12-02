@@ -1,54 +1,23 @@
-import {useState, useEffect} from "react";
+import { useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addCategory, fetchCategoryById,} from "../redux/slices/CategoriesSlice.jsx";
-import {addProducts} from "../redux/slices/ProductSlice.jsx";
+import {fetchCategoryById,} from "../redux/slices/CategoriesSlice.jsx";
 import {useRef} from "react";
+import {useNavigate} from "react-router-dom";
 import images from "../images/indeksModel-Photoroom.png"
 import images2 from "../images/1fd5e68d-0d64-4723-9b53-38894758cad3-Photoroom.png"
-import {Paper} from "@mui/material";
-import Box from "@mui/material/Box";
+import categoryImages1 from "../images/output (1).jpg"
+import categoryImages2 from "../images/output (2).jpg"
+import categoryImages3 from "../images/output (4).jpg"
+import categoryImages4 from "../images/output (5).jpg"
+import {FaArrowRight} from "react-icons/fa";
+import {AiOutlineArrowRight} from "react-icons/ai";
 
 
 function HomePage() {
     const dispatch = useDispatch();
-
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-
-    const [productData, setProductData] = useState({
-        size: "", name: "", material: "", brand: "", price: 0, categoryId: 1
-    });
-
+    const navigate = useNavigate();
     const category = useSelector((state) => state.categories.category);
-    const allCategory = useSelector((state) => state.categories.allCategories);
-    const allProducts = useSelector(state => state.products.allProducts)
-
-    // Burası kategori işlemleri için yapılan fonksiyon
-    const handleCategorySubmit = (e) => {
-        e.preventDefault();
-        if (name && description) {
-            console.log("Gönderilen Kategori:", {name, description});
-            dispatch(addCategory({name, description}));
-            setName("");
-            setDescription("");
-        } else {
-            alert("İsim ve açıklama gerekli!");
-        }
-    };
-
-    const handleProductSubmit = (e) => {
-        e.preventDefault();
-        console.log("Gönderilen Ürün:", productData);
-        setProductData({size: "", name: "", material: "", brand: "", price: 0});
-        dispatch(addProducts(productData))
-    };
-
-    const handleProductChange = (e) => {
-        const {name, value} = e.target;
-        setProductData((prevData) => ({
-            ...prevData, [name]: value,
-        }));
-    };
+    const buttonTexts = ["Ceket", "Mont ve Kaban", "Jean", "Sweatshirt"]; // Her buton için farklı yazılar
 
 
     const handleScrollDown = () => {
@@ -60,6 +29,8 @@ function HomePage() {
             });
         }
     };
+
+    
 
 
     useEffect(() => {
@@ -120,10 +91,37 @@ function HomePage() {
                         için size rehberlik ediyoruz.
                         Kendi stilinizi keşfedin ve giyiminize yeni bir soluk kazandırın!
                     </p>
+                    <div
+                        onClick={() => navigate("/combinate")}
+                        style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            margin: "0 auto",
+                            width: "60px",
+                            height: "60px",
+                            borderRadius: "50%",
+                            backgroundColor: "rgba(0, 0, 0, 0.6)",
+                            color: "white",
+                            cursor: "pointer",
+                            transition: "transform 0.3s ease, background-color 0.3s ease",
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                            e.currentTarget.style.transform = "scale(1.1)";
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+                            e.currentTarget.style.transform = "scale(1)";
+                        }}
+                    >
+                        <AiOutlineArrowRight size={30}/>
+                    </div>
+
+
                 </div>
             </div>
 
-            {/* Aşağı ok butonu */}
             <div style={{
                 position: "relative",
                 height: "100%",
@@ -144,7 +142,7 @@ function HomePage() {
                         width: "50px",
                         height: "50px",
                         backgroundColor: "black",
-                        opacity: "0.6",  // Bu opaklık sadece butonun arka planına etkiler
+                        opacity: "0.6",
                     }}
                 >
         <span
@@ -152,8 +150,8 @@ function HomePage() {
                 position: "absolute",
                 top: "50%",
                 left: "50%",
-                transform: "translate(-50%, -50%)", // Ok simgesini tam ortalayacak
-                color: "white", // Ok simgesinin rengini beyaz yapalım
+                transform: "translate(-50%, -50%)",
+                color: "white",
             }}
         >
             &#8595; {/* Aşağı ok simgesi */}
@@ -186,9 +184,101 @@ function HomePage() {
                 </div>
 
             </div>
-            <div style={{
-                height: "100px",
-            }}></div>
+            <div className="bg-light" style={{
+                height: "300px",
+                textAlign: "center",
+                fontFamily: "'Platypi', 'serif'",
+            }}>
+                <h4 className="mt-5" style={{
+                    color: "#376642",
+
+                }}>Daha fazla ürün eklendi</h4>
+                <h1 className="text-uppercase">Kampanyalar %40&#39;a varan indirim indirim!</h1>
+                <button className="text-uppercase p-2 border-0 bg-dark text-white rounded-1">alışverişe başla</button>
+                <h5 className="mt-4 font-playtpi">SECILI URUNLERDE</h5>
+                <h6 className="text-secondary">Mağazalarda ve online satışta</h6>
+                <p className="mt-5">Diğer kampanyalarla birleştirilemez.1 Ağustos - 05 Kasım arası geçerli.</p>
+            </div>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+                    width: "100%",
+                    justifyItems: "center",
+                    alignItems: "center",
+                }}
+            >
+                {[categoryImages1, categoryImages2, categoryImages3, categoryImages4].map(
+                    (image, index) => (
+                        <div
+                            key={index}
+                            style={{
+                                position: "relative",
+                                overflow: "hidden",
+                                width: "100%",
+                            }}
+                        >
+                            {/* Resim */}
+                            <img
+                                src={image}
+                                alt=""
+                                style={{
+                                    maxWidth: "100%",
+                                    height: "auto",
+                                    display: "block",
+                                }}
+                            />
+
+                            {/* Siyah Transparan Katman */}
+                            <div
+                                style={{
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                    backgroundColor: "rgba(0, 0, 0, 0.5)", // Transparan siyah
+                                }}
+                            ></div>
+
+                            {/* Ortadaki Transparan Buton */}
+                            <button
+                                style={{
+                                    position: "absolute",
+                                    top: "50%",
+                                    left: "50%",
+                                    transform: "translate(-50%, -50%)", // Tam merkeze hizalar
+                                    padding: "5px 40px",
+                                    backgroundColor: "transparent", // Transparan arka plan
+                                    color: "#fff", // Beyaz yazı
+                                    border: "1px solid #fff", // Beyaz çerçeve
+                                    borderRadius: "50px",
+                                    cursor: "pointer",
+                                    zIndex: 2, // Katmanın üstünde görünmesi için
+                                    fontSize: "16px", // Yazı boyutu
+                                    textTransform: "uppercase",
+                                    textWrap: "nowrap",
+                                    fontFamily: "'Platypi', 'serif'",
+                                }}
+                                onClick={() =>
+                                    console.log(`Butona tıklanan yazı: ${buttonTexts[index]}`)
+                                }
+                            >
+                                {buttonTexts[index]} {/* Farklı buton yazıları */}
+                            </button>
+                        </div>
+
+                    )
+                )}
+            </div>
+            <h1 style={{
+                fontFamily: "'Platypi', 'serif'",
+                letterSpacing: "10px",
+            }} className="text-start p-5 tr"><FaArrowRight className="mb-3"/> İLGİNİZİ ÇEKEBİLİR </h1>
+
+            ;
+
+
         </div>);
 }
 

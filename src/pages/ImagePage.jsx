@@ -19,7 +19,7 @@ function ImagePage() {
         formData.append('file', selectedFile);
 
         try {
-            const response = await axios.post("http://localhost:8080/api/products/file/1", formData,
+            const response = await axios.post("http://localhost:8080/api/file/upload", formData,
                 {headers: {'Content-Type': 'multipart/form-data'}});
             console.log("Yükleme Başalarılı", response.data);
         }

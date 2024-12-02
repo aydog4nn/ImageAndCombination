@@ -6,6 +6,7 @@ import ImagePage from '../pages/ImagePage'
 import CategoryDetails from "../pages/CategoryDetails.jsx";
 import ProductDetails from "../components/ProductDetails.jsx";
 import ProductList from "../components/ProductList.jsx";
+import CreateCombinatePage from "../pages/CreateCombinatePage.jsx";
 
 function Router() {
 
@@ -19,6 +20,7 @@ function Router() {
         <Route path='/categories/:id' element={<CategoryDetails />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/products' element={<ProductList />} />
+        <Route path='/combinate' element={<CreateCombinatePage />} />
     </Routes>
   )
 }

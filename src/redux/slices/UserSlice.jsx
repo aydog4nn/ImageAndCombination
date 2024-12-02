@@ -4,11 +4,11 @@ const initialState = {
 
     user:[],
     loading:false,
-    data:null,
     error:null,
 }
 
-const BASE_URL = "http://localhost:8080/api/users";
+const BASE_URL = "http://localhost:8080/api/auth/login";
+const REGISTER_URL = "http://localhost:8080/api/auth/register";
 
 export const postUser = createAsyncThunk(
     "postUser",
@@ -19,6 +19,19 @@ export const postUser = createAsyncThunk(
         }
         catch(error){
             return thunkAPI.rejectWithValue(error.response.data);
+        }
+    }
+)
+
+export const registerUser = createAsyncThunk(
+    "registerUser",
+    async (userData,thunkAPI) => {
+        try {
+            const response = await axios.post(REGISTER_URL, userData);
+            return response.data;
+        }
+        catch(error){
+            return thunkAPI.rejectWithValue(error.response?.data || "Bir seyler sikintili baba");
         }
     }
 )
@@ -40,11 +53,23 @@ export const UserSlice = createSlice({
             })
             .addCase(postUser.fulfilled,(state,action) => {
                 state.loading=false;
-                state.data = action.payload;
+                state.user = action.payload;
             })
             .addCase(postUser.rejected,(state,action) => {
                 state.loading=false;
                 state.error=action.payload;
+            })
+            .addCase(registerUser.pending,(state) => {
+                state.loading=true;
+                state.error=null;
+            })
+            .addCase(registerUser.fulfilled,(state,action) => {
+                state.loading=false;
+                state.user = action.payload;
+            })
+            .addCase(registerUser.rejected,(state,action) => {
+                state.loading=false;
+                state.error = action.payload;
             })
     }
 })
