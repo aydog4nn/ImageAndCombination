@@ -14,10 +14,11 @@ function Router() {
   return (
     <Routes>
         <Route path='/home' element={<HomePage/>} />
+        <Route path='/' element={<HomePage/>} />
         <Route path='/register' element={<SignUpPage/>} />
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/image' element={<ImagePage/>} />
-        <Route path='/categories/:id' element={<CategoryDetails />} />
+        <Route path='/category/:id' element={<CategoryDetails />} />
         <Route path='/products/:id' element={<ProductDetails />} />
         <Route path='/products' element={<ProductList />} />
         <Route path='/combinate' element={<CreateCombinatePage />} />
