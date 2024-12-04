@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
     products: [],
     allProducts: [],
+
     selectedProduct: {},
     loading: false,
     error: null,
@@ -16,7 +17,7 @@ export const addProducts = createAsyncThunk(
     "categories/addProducts",
     async (products) => {
         const response = await axios.post(BASE_URL_PRODUCTS, products);
-        console.log("Gönderilen ürünler:", response.data);
+        console.log("Gönderilen ürün:", response.data);
         return response.data;
     }
 )
@@ -25,7 +26,6 @@ export const fetchAllProduct = createAsyncThunk(
     "categories/fetchAllProduct",
     async () => {
         const response = await axios.get(BASE_URL_PRODUCTS);
-        console.log(response.data)
         return response.data;
     }
 )
@@ -49,7 +49,8 @@ const ProductSlice = createSlice({
         reducers: {
             setSelectedProduct: (state, action) => {
                 state.selectedProduct = action.payload;
-            }
+            },
+
         },
         extraReducers: (builder) => {
             builder
@@ -94,6 +95,6 @@ const ProductSlice = createSlice({
     }
 )
 
-export const {setSelectedProduct} = ProductSlice.actions
+export const {setSelectedProduct,findListLength} = ProductSlice.actions
 
 export default ProductSlice.reducer

@@ -16,7 +16,7 @@ import {AiOutlineArrowRight} from "react-icons/ai";
 function HomePage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const category = useSelector((state) => state.categories.category);
+    const category = useSelector((state) => state.categories.selectedCategory);
     const buttonTexts = ["Ceket", "Mont ve Kaban", "Jean", "Sweatshirt"]; // Her buton için farklı yazılar
 
 
@@ -50,7 +50,7 @@ function HomePage() {
 
         <div style={{width: "100%"}}>
             <div style={{
-                backgroundColor: "#f7e7d4", padding: "0px", margin: "0px",
+                backgroundColor: "#f7e7d4", padding: "0px",
                 display: "flex", justifyContent: "center", alignItems: "center",
                 height: `${imageRef.current ? imageRef.current.height : "auto"}`
             }}>

@@ -3,7 +3,8 @@ import axios from "axios";
 
 const initialState = {
     allCategories: [],
-    category: [],
+    selectedCategory : [],
+    categoryProducts: [],
     loading: false,
     error: null,
 };
@@ -12,8 +13,8 @@ const BASE_URL = "http://localhost:8080/api/category";
 
 export const fetchCategoryById = createAsyncThunk(
     "categories/fetchCategoryById",
-    async (id) => {
-        const response = await axios.get(`${BASE_URL}/${id}`);
+    async (categoryId) => {
+        const response = await axios.get(`${BASE_URL}/${categoryId}`);
         console.log(response.data);
         return response.data;
     }
@@ -23,7 +24,6 @@ export const fetchAllCategory = createAsyncThunk(
     "categories/fetchAllCategory",
     async () => {
         const response = await axios.get(BASE_URL);
-        console.log(response.data)
         return response.data;
     }
 );
@@ -31,6 +31,7 @@ export const fetchAllCategory = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
     "categories/addCategory",
+
     async (category) => {
         const response = await axios.post(BASE_URL, category);
         console.log("Gönderilen veri:", response.data);
@@ -38,10 +39,35 @@ export const addCategory = createAsyncThunk(
     }
 );
 
+export const selectCategoryById = (state, categoryId) => {
+    const categories = state.categories.allCategories;
+    return categories ? categories.find((category) => category.id === categoryId) : undefined;
+}
+
+export const fetchProductsByCategoryId = createAsyncThunk(
+    "categories/fetchProductsByCategoryId",
+    async (categoryId,{rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${BASE_URL}/${categoryId}/products`);
+            console.log("Products fetched:",response.data);
+            return response.data;
+        }
+        catch (error) {
+            console.error("Error fetcing products:",error);
+            return rejectWithValue(error.message);
+        }
+    }
+)
+
+// eslint-disable-next-line react-refresh/only-export-components
 const CategoriesSlice = createSlice({
     name: "categories",
     initialState,
-    reducers: {},
+    reducers: {
+        clearSelectedCategory(state){
+            state.selectedCategory = [];
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(addCategory.pending, (state) => {
@@ -60,7 +86,7 @@ const CategoriesSlice = createSlice({
             })
             .addCase(fetchCategoryById.fulfilled, (state, action) => {
                 state.loading = false;
-                state.category = action.payload;
+                state.selectedCategory = action.payload;
             })
             .addCase(fetchCategoryById.rejected, (state, action) => {
                 state.loading = false;
@@ -77,12 +103,22 @@ const CategoriesSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
-
+            .addCase(fetchProductsByCategoryId.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchProductsByCategoryId.fulfilled, (state, action) => {
+                state.loading = false;
+                state.categoryProducts = action.payload;
+            })
+            .addCase(fetchProductsByCategoryId.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
 
     }
 });
 
-export const selectCategoryById = (state, id) =>
-    state.category.categories.find((category) => category.id === id);
 
+export const selectedProductsByCategory = (state) => state.categories.categoryProducts;
+export const {clearSelectedCategory} = CategoriesSlice.actions;
 export default CategoriesSlice.reducer;

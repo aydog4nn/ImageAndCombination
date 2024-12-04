@@ -7,12 +7,12 @@ function SignUpPage() {
 
 
     const [formData, setFormData] = useState({
-        fullName: "",
+        fullName:"",
         email:"",
         password: "",
     })
     const dispatch = useDispatch();
-    const {loading,error,user} = useSelector((state) => state.users);
+    const {loading,error,user} = useSelector((state) => state.users.user);
 
 
 
@@ -44,7 +44,7 @@ function SignUpPage() {
                                 height: "40px"
                             }}
                             type="text"
-                            name="name"
+                            name="fullName"
                             onChange={handleChange}
                             placeholder="İsminizi giriniz"
                             value={formData.fullName}

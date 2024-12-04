@@ -1,41 +1,37 @@
-import React from 'react'
-import {Container, Form, Button} from 'react-bootstrap';
-import axios from "axios";
+import { useState } from "react";
+import { Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { uploadToProductPhoto } from "../redux/slices/ImageSlice.jsx";
 
-function ImagePage() {
+function ImagePage({ id }) {
+    const dispatch = useDispatch();
+    const [selectedFile, setSelectedFile] = useState(null);
+    console.log(id)
+    const { loading, error, productData } = useSelector((state) => state.photo);
 
-    const [selectedFile, setSelectedFile] = React.useState(null);
     const handleFileChange = (e) => {
         setSelectedFile(e.target.files[0]);
-    }
+    };
 
-    const handleUpload = async () => {
+    const handleUpload = () => {
         if (!selectedFile) {
-            alert('Please upload a file');
-            return
+            alert("Lütfen bir dosya seçin!");
+            return;
         }
-
-        const formData = new FormData();
-        formData.append('file', selectedFile);
-
-        try {
-            const response = await axios.post("http://localhost:8080/api/file/upload", formData,
-                {headers: {'Content-Type': 'multipart/form-data'}});
-            console.log("Yükleme Başalarılı", response.data);
-        }
-        catch(error){
-            console.log(error.message);
-        }
-    }
+        dispatch(uploadToProductPhoto({ photo: selectedFile, id }));
+    };
 
     return (
-        <div><Container>
-            <h1>Upload an Image</h1>
+        <Container>
+            <h1>Fotoğraf Yükle</h1>
             <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload}>Yükle</button>
+            <button onClick={handleUpload} disabled={loading}>
+                {loading ? "Yükleniyor..." : "Yükle"}
+            </button>
+            {error && <p style={{ color: "red" }}>Hata: {error}</p>}
+            {productData && <p style={{ color: "green" }}>Fotoğraf başarıyla yüklendi!</p>}
         </Container>
-        </div>
-    )
+    );
 }
 
-export default ImagePage
+export default ImagePage;
