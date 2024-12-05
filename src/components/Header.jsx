@@ -1,26 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllCategory } from "../redux/slices/CategoriesSlice.jsx";
-import { BsTruck, BsBag } from "react-icons/bs";
-import { RiAccountBoxLine } from "react-icons/ri";
+import React, {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAllCategory} from "../redux/slices/CategoriesSlice.jsx";
+import {BsTruck, BsBag} from "react-icons/bs";
+import {RiAccountBoxLine} from "react-icons/ri";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import styled from "styled-components";
+import MenuImage from "../images/output (23).jpg"
+import MenuImage2 from "../images/output (24).jpg"
+import MenuImage3 from "../images/output (25).jpg"
+import MenuFooterImage from "../images/Alt Başlık.png"
 
 function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
     const [open, setOpen] = useState(false); // Drawer kontrolü
     const [isScrolled, setIsScrolled] = useState(false); // Scroll durumunu tutacak state
     const [showTopBar, setShowTopBar] = useState(true); // Üst barın görünürlüğü
-
     const category = useSelector((state) => state.categories.allCategories);
+    const campaigns = [
+        {id: 1, slogan: "Online Satışa Özel %10 İndirim!"},
+        {id: 2, slogan: "Tüm Alışverişlerde Kargo Bedava!"},
+        {id: 3, slogan: "Yeni Sezona Merhaba: %15 İndirim Fırsatı!"},
+        {id: 4, slogan: "3 Al 2 Öde Kampanyası!"},
+        {id: 5, slogan: "Bugüne Özel %20'ye Varan İndirimler!"},
+        {id: 6, slogan: "Özel Ürünlerde %30'a Varan İndirimler!"},
+        {id: 7, slogan: "Arkadaşını Davet Et, %5 Ekstra İndirim Kazan!"},
+        {id: 8, slogan: "Sezon Sonu İndirimi: %50'ye Varan Fırsatlar!"},
+        {id: 9, slogan: "Online Alışverişlerde İlk Siparişe Özel %10 İndirim!"},
+        {id: 10, slogan: "Sadece Bu Hafta: 2. Üründe %50 İndirim!"},
+    ];
+    const menuFooter = [
+        {id: 1, slogan: "Aramıza katıl"},
+        {id: 2, slogan: "Sıkça sorulan sorular"},
+        {id: 3, slogan: "Nasıl iade edilir?"},
+        {id: 4, slogan: "Hediye Kartı"},
+        {id: 5, slogan: "Mağazalar"},
 
+    ]
     useEffect(() => {
         if (!category || category.length === 0) {
             dispatch(fetchAllCategory());
@@ -39,6 +60,19 @@ function Header() {
     const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
     };
+
+    const menuItems = [
+        {id: 1, name: "GDG Core", image: MenuImage},
+        {id: 2, name: "The GDG Edit", image: MenuImage2},
+        {id: 3, name: "GDG Exclusive", image: MenuImage3},
+        {id: 4, name: "Fits"},
+        {id: 5, name: "GDG Daily"},
+        {id: 6, name: "GDG Vibes"},
+        {id: 7, name: "GDG Studio"},
+        {id: 8, name: "Essentials"},
+        {id: 9, name: "Basics"},
+        {id: 10, name: "Trending"},
+    ];
 
     const UnderlinedText = styled.span`
         position: relative;
@@ -65,7 +99,7 @@ function Header() {
 
     const DrawerList = (
         <Box
-            sx={{ width: 550 }}
+            sx={{width: 600}}
             style={{
                 display: "flex",
                 alignItems: "start",
@@ -74,37 +108,187 @@ function Header() {
                 padding: "20px",
             }}
         >
-            <h4
+            <h5
                 style={{
                     fontWeight: "bold",
-                    textTransform: "uppercase",
+                    color: "#376642",
                     fontFamily: "'Platypi', 'serif'",
                 }}
             >
                 Senin için önerilenler
-            </h4>
+            </h5>
             <div
                 style={{
                     borderBottom: "2px solid black",
                     width: "90%",
                     marginTop: "10px",
                     marginBottom: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
                 }}
-            ></div>
-            {category &&
-                category.map((item, index) => (
-                    <div
-                        onClick={() => navigate(`/category/${item.id}`)}
-                        key={item.id}
-                        style={{
+            >
+
+            </div>
+            <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "5px",
+            }}>
+
+                {
+                    category && category.map((item, index) => (
+
+                        <div key={item.id} onClick={() => navigate(`/category/${item.id}`)} style={{
+                            display: index < 6 ? "flex" : "none",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            border: "none",
+                            backgroundColor: "#F0F0F0",
+                            padding: "9px 15px",
+                            fontSize: "13px",
+                            borderRadius: "6px",
+                            fontFamily: "'Platypi', 'serif'",
+                            fontWeight: "light",
+                            marginBottom: "20px",
                             cursor: "pointer",
-                            margin: "10px 0",
-                            fontSize: "16px",
-                        }}
-                    >
-                        {index}:{item.name}
-                    </div>
-                ))}
+                            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.3)",
+                        }}>
+
+                            {item.name}
+                        </div>
+                    ))
+                }
+            </div>
+            <div style={{
+                display: "flex",
+            }}>
+
+                <div>
+
+                    {category &&
+                        category.map((item) => (
+                            <div
+                                onClick={() => navigate(`/category/${item.id}`)}
+                                key={item.id}
+                                style={{
+                                    cursor: "pointer",
+                                    fontSize: "13px",
+                                    fontFamily: "'Platypi', 'serif'",
+                                    letterSpacing: "-0.5px",
+                                    padding: "10px",
+                                    fontWeight: "lighter",
+                                    color: item.id === 8 ? "#376642" : "#000",
+
+                                }}
+                            >
+                                {item.name}
+                            </div>
+                        ))}
+                </div>
+                <div style={{
+                    marginLeft: "30px"
+                }}>
+
+                    {menuItems &&
+                        menuItems.map((item, index) => (
+
+                            <div
+                                onClick={() => navigate(`/category/${item.id}`)}
+                                key={item.id}
+                                style={{
+                                    display: index < 3 ? "flex" : "none",
+                                    cursor: "pointer",
+                                    fontSize: "13px",
+                                    fontFamily: "'Platypi', 'serif'",
+                                    letterSpacing: "-0.5px",
+                                    padding: "10px",
+                                    fontWeight: "lighter",
+                                    color: "#000",
+                                    alignItems: "center",
+                                    textTransform: "uppercase"
+                                }}
+                            >
+                                <img style={{
+                                    marginRight: "5px",
+                                    border: "none",
+                                    width: "40px",
+                                    height: "40px",
+                                    borderRadius: "50%",
+                                }} src={item.image} alt=""/>
+                                {item.name}
+                            </div>
+
+                        ))}
+
+                </div>
+                <div style={{
+                    marginLeft: "30px"
+                }}>
+
+                    {campaigns &&
+                        campaigns.map((item, index) => (
+
+                            <div
+                                onClick={() => navigate(`/category/${item.id}`)}
+                                key={item.id}
+                                style={{
+                                    display: index < 6 ? "flex" : "none",
+                                    cursor: "pointer",
+                                    fontSize: "13px",
+                                    fontFamily: "'Platypi', 'serif'",
+                                    letterSpacing: "-0.5px",
+                                    padding: "10px",
+                                    fontWeight: "lighter",
+                                    color: index === 4 ? "red" : "#000",
+                                    alignItems: "center",
+                                }}
+                            >
+
+                                {item.slogan}
+                            </div>
+
+                        ))}
+
+                </div>
+            </div>
+            <div style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop:"50px",
+                gap:"20px",
+            }}>
+                {
+                    menuFooter && menuFooter.map((item, index) => (
+                        <div key={index} style={{
+                            display: "flex",
+                            alignItems:'center',
+                            justifyContent: "center",
+                            fontSize: "13px",
+                            color:"#c2c2c2",
+                            fontFamily: "'Platypi', 'serif'",
+                            fontWeight:"lighter",
+                        }}>
+                            {item.slogan}
+                        </div>
+                    ))
+                }
+            </div>
+            <div style={{
+                width: "100%",
+                display: "flex",
+                alignItems:"center",
+                justifyContent:"center",
+                marginTop:"20px",
+                backgroundColor: "rgba(0, 0, 0)",
+            }}>
+                <img style={{
+
+                    width:"110px",
+                }} src={MenuFooterImage} alt=""/>
+            </div>
         </Box>
     );
 
@@ -188,10 +372,10 @@ function Header() {
                         {DrawerList}
                     </Drawer>
                     <UnderlinedText>
-                        <h6 style={{ margin: 0 }}>Erkek</h6>
+                        <h6 style={{margin: 0}}>Erkek</h6>
                     </UnderlinedText>
                     <UnderlinedText>
-                        <h6 style={{ margin: 0 }}>Kadın</h6>
+                        <h6 style={{margin: 0}}>Kadın</h6>
                     </UnderlinedText>
                 </div>
 
@@ -231,7 +415,7 @@ function Header() {
                             transition: "color 0.3s ease",
                         }}
                     >
-                        <BsBag />
+                        <BsBag/>
                     </div>
                     <div
                         style={{
@@ -240,13 +424,13 @@ function Header() {
                             transition: "color 0.3s ease",
                         }}
                     >
-                        <RiAccountBoxLine />
+                        <RiAccountBoxLine/>
                     </div>
                 </div>
             </div>
 
             {/* Sayfa İçeriği: Header'ın altından başlamak için padding-top */}
-            <div style={{ paddingTop: showTopBar ? "120px" : "70px" }}>
+            <div style={{paddingTop: showTopBar ? "120px" : "70px"}}>
                 {/* Buraya sayfanın geri kalan içeriğini yerleştirebilirsiniz */}
                 {/* Örneğin, ürün listeleme, kategori gösterimi vs. */}
             </div>
