@@ -64,9 +64,9 @@ const CategoriesSlice = createSlice({
     name: "categories",
     initialState,
     reducers: {
-        clearSelectedCategory(state){
-            state.selectedCategory = [];
-        }
+        setSelectedCategory(state, action) {
+            state.selectedCategory = action.payload;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -120,5 +120,5 @@ const CategoriesSlice = createSlice({
 
 
 export const selectedProductsByCategory = (state) => state.categories.categoryProducts;
-export const {clearSelectedCategory} = CategoriesSlice.actions;
+export const {setSelectedCategory} = CategoriesSlice.actions;
 export default CategoriesSlice.reducer;

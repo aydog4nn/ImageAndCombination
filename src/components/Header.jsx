@@ -62,9 +62,9 @@ function Header() {
     };
 
     const menuItems = [
-        {id: 1, name: "GDG Core", image: MenuImage},
-        {id: 2, name: "The GDG Edit", image: MenuImage2},
-        {id: 3, name: "GDG Exclusive", image: MenuImage3},
+        {id: 1, name: "AMT Core", image: MenuImage},
+        {id: 2, name: "The AMT Edit", image: MenuImage2},
+        {id: 3, name: "AMT Exclusive", image: MenuImage3},
         {id: 4, name: "Fits"},
         {id: 5, name: "GDG Daily"},
         {id: 6, name: "GDG Vibes"},
@@ -148,7 +148,7 @@ function Header() {
                             backgroundColor: "#F0F0F0",
                             padding: "9px 15px",
                             fontSize: "13px",
-                            borderRadius: "6px",
+                            borderRadius: "3px",
                             fontFamily: "'Platypi', 'serif'",
                             fontWeight: "light",
                             marginBottom: "20px",
@@ -282,7 +282,6 @@ function Header() {
                 alignItems:"center",
                 justifyContent:"center",
                 marginTop:"20px",
-                backgroundColor: "rgba(0, 0, 0)",
             }}>
                 <img style={{
 
@@ -429,10 +428,7 @@ function Header() {
                 </div>
             </div>
 
-            {/* Sayfa İçeriği: Header'ın altından başlamak için padding-top */}
             <div style={{paddingTop: showTopBar ? "120px" : "70px"}}>
-                {/* Buraya sayfanın geri kalan içeriğini yerleştirebilirsiniz */}
-                {/* Örneğin, ürün listeleme, kategori gösterimi vs. */}
             </div>
         </div>
     );

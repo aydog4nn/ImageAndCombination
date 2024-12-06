@@ -7,6 +7,7 @@ import {
     selectCategoryById,
     selectedProductsByCategory
 } from "../redux/slices/CategoriesSlice.jsx";
+import Product from "../components/Product.jsx";
 
 function CategoryDetails() {
 
@@ -15,7 +16,7 @@ function CategoryDetails() {
     const dispatch = useDispatch();
     const category = useSelector((state) => state.categories.selectedCategory);
     const products = useSelector((state) => state.categories.categoryProducts);
-
+    console.log(products);
     useEffect(() => {
 
         dispatch(fetchCategoryById(id))
@@ -26,17 +27,29 @@ function CategoryDetails() {
 
     if (!category) return <div>Loading..</div>
     return (
-        <div>
-            <h1>{category.name}</h1>
-            <h3>{category.description}</h3>
-            <h2>Products:</h2>
+        <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            marginTop:"20px",
+        }}>
+
+
 
             {products && products.length > 0 ? (
-                <ul>
+                <div className="gap-4 mt-5" style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flexWrap: "wrap",
+                }}>
+
                     {products.map((product) => (
-                        <li key={product.id}>{product.name}</li>
+                        <Product key={product.id} product={product}/>
                     ))}
-                </ul>
+
+                </div>
             ) : (
                 <p>No products found.</p>
             )}
