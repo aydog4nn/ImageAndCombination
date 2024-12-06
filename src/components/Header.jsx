@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllCategory} from "../redux/slices/CategoriesSlice.jsx";
 import {BsTruck, BsBag} from "react-icons/bs";
@@ -42,6 +42,13 @@ function Header() {
         {id: 5, slogan: "Mağazalar"},
 
     ]
+
+    const location  = useLocation();
+    if (location.pathname === "/login"){
+
+        return null;
+    }
+
     useEffect(() => {
         if (!category || category.length === 0) {
             dispatch(fetchAllCategory());
