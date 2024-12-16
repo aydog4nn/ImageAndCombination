@@ -18,10 +18,17 @@ import MenuFooterImage from "../images/Alt Başlık.png"
 function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location  = useLocation();
+
     const [open, setOpen] = useState(false); // Drawer kontrolü
     const [isScrolled, setIsScrolled] = useState(false); // Scroll durumunu tutacak state
     const [showTopBar, setShowTopBar] = useState(true); // Üst barın görünürlüğü
     const category = useSelector((state) => state.categories.allCategories);
+
+    if (location.pathname === "/login"){
+
+        return null;
+    }
     const campaigns = [
         {id: 1, slogan: "Online Satışa Özel %10 İndirim!"},
         {id: 2, slogan: "Tüm Alışverişlerde Kargo Bedava!"},
@@ -43,11 +50,7 @@ function Header() {
 
     ]
 
-    const location  = useLocation();
-    if (location.pathname === "/login"){
 
-        return null;
-    }
 
     useEffect(() => {
         if (!category || category.length === 0) {
