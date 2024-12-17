@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import  {useState, useEffect} from "react";
+import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllCategory} from "../redux/slices/CategoriesSlice.jsx";
 import {BsTruck, BsBag} from "react-icons/bs";
@@ -7,28 +7,25 @@ import {RiAccountBoxLine} from "react-icons/ri";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import ButtonGroup from "@mui/material/ButtonGroup";
 import Typography from "@mui/material/Typography";
 import styled from "styled-components";
 import MenuImage from "../images/output (23).jpg"
 import MenuImage2 from "../images/output (24).jpg"
 import MenuImage3 from "../images/output (25).jpg"
 import MenuFooterImage from "../images/Alt Başlık.png"
+import {logoutUser} from "../redux/slices/UserSlice.jsx";
 
 function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const location  = useLocation();
 
     const [open, setOpen] = useState(false); // Drawer kontrolü
     const [isScrolled, setIsScrolled] = useState(false); // Scroll durumunu tutacak state
     const [showTopBar, setShowTopBar] = useState(true); // Üst barın görünürlüğü
     const category = useSelector((state) => state.categories.allCategories);
+    const {  isLoggedIn,user } = useSelector(state => state.users);
 
-    if (location.pathname === "/login"){
-
-        return null;
-    }
     const campaigns = [
         {id: 1, slogan: "Online Satışa Özel %10 İndirim!"},
         {id: 2, slogan: "Tüm Alışverişlerde Kargo Bedava!"},
@@ -49,7 +46,6 @@ function Header() {
         {id: 5, slogan: "Mağazalar"},
 
     ]
-
 
 
     useEffect(() => {
@@ -267,19 +263,19 @@ function Header() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                marginTop:"50px",
-                gap:"20px",
+                marginTop: "50px",
+                gap: "20px",
             }}>
                 {
                     menuFooter && menuFooter.map((item, index) => (
                         <div key={index} style={{
                             display: "flex",
-                            alignItems:'center',
+                            alignItems: 'center',
                             justifyContent: "center",
                             fontSize: "13px",
-                            color:"#c2c2c2",
+                            color: "#c2c2c2",
                             fontFamily: "'Platypi', 'serif'",
-                            fontWeight:"lighter",
+                            fontWeight: "lighter",
                         }}>
                             {item.slogan}
                         </div>
@@ -289,13 +285,13 @@ function Header() {
             <div style={{
                 width: "100%",
                 display: "flex",
-                alignItems:"center",
-                justifyContent:"center",
-                marginTop:"20px",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "20px",
             }}>
                 <img style={{
 
-                    width:"110px",
+                    width: "110px",
                 }} src={MenuFooterImage} alt=""/>
             </div>
         </Box>
@@ -398,26 +394,42 @@ function Header() {
                             cursor: "pointer",
                             color: isScrolled ? "#fff" : "#000",
                             transition: "color 0.3s ease",
+                            fontFamily: "'Platypi', 'serif'",
                         }}
                         onClick={() => navigate("/")}
                         variant="h5"
                     >
-                        Diggy&mia
+                        İnu Geliştiriciler
                     </Typography>
                 </div>
 
                 {/* Sağ Menüler */}
                 <div className="d-flex justify-content-around gap-3 align-items-center fs-5">
                     <div>
-                        <TextField
-                            id="outlined-basic"
-                            size="small"
-                            color={isScrolled ? "primary" : "success"}
-                            label="Search"
-                            variant="outlined"
-                        />
+                        <ButtonGroup color={isLoggedIn ? "inherit" : "success"} variant="contained"
+                                     aria-label="basic-group-button">
+                            {isLoggedIn ? (
+                                <>
+                                    <Typography sx={{
+                                        color: isScrolled ? "#fff" : "#000",
+                                        display:"flex",
+                                        alignItems: "center",
+                                        justifyContent:"center",
+                                        marginRight: "10px",
+                                        paddingLeft: "10px",
+                                    }} variant="subtitle1">Merhaba, {user.fullName}</Typography> {/* Kullanıcı adı */}
+                                    <Button onClick={() => dispatch(logoutUser())}>Çıkış Yap</Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Button onClick={() => navigate("/login")}>Giriş Yap</Button>
+                                    <Button onClick={() => navigate("/register")}>Kayıt Ol</Button>
+                                </>
+                            )}
+                        </ButtonGroup>
                     </div>
                     <div
+                        onClick={() => navigate("/basket")}
                         style={{
                             cursor: "pointer",
                             color: isScrolled ? "#fff" : "#000",

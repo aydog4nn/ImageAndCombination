@@ -6,11 +6,13 @@ import CarouselImage from '../images/output (28).jpg';
 import CarouselImage2 from '../images/output (29).jpg';
 import CarouselImage3 from '../images/output (27).jpg';
 import { Image } from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 
 function SignUpPage() {
     const [formData, setFormData] = useState({
         fullName: "", email: "", password: "",
     });
+    const navigate = useNavigate();
     const [tPassword, setTPassword] = useState("");
     const [windowWidth, setWindowWidth] = useState(window.innerWidth); // For responsive behavior
 
@@ -54,7 +56,7 @@ function SignUpPage() {
             <div
                 style={{
                     display: "flex",
-                    flexDirection: isMobile ? "column" : "row", // Column for mobile
+                    flexDirection: isMobile ? "column" : "row",
                     width: "100%",
                     maxWidth: "900px",
                     borderRadius: "12px",
@@ -64,7 +66,6 @@ function SignUpPage() {
                     flexWrap: "wrap", // Allow wrapping for mobile
                 }}
             >
-                {/* Sol Panel (Resim kısmı sadece masaüstü için) */}
                 {!isMobile && (
                     <div
                         style={{
@@ -241,6 +242,7 @@ function SignUpPage() {
                             </label>
                         </div>
                         <button
+                            onClick={() => navigate("/login")}
                             type="submit"
                             style={{
                                 width: "100%",

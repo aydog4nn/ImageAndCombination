@@ -49,10 +49,14 @@ export const UserSlice = createSlice({
             state.user = action.payload;
             state.isLoggedIn = true;
         },
-        logoutUser(state ){
+        logoutUser(state) {
             state.user = [];
             state.isLoggedIn = false;
+            localStorage.removeItem("userID");
+            localStorage.removeItem("fullName");
+            localStorage.removeItem("isLoggedIn");
         }
+
     },
     extraReducers:(builder) => {
         builder

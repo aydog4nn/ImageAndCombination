@@ -8,6 +8,7 @@ import ProductDetails from "../components/ProductDetails.jsx";
 import ProductList from "../components/ProductList.jsx";
 import CreateCombinatePage from "../pages/CreateCombinatePage.jsx";
 import AddProductPage from "../pages/AddProductPage.jsx";
+import BasketPage from "../pages/BasketPage.jsx";
 
 function Router() {
 
@@ -23,6 +24,7 @@ function Router() {
         <Route path='/products' element={<ProductList />} />
         <Route path='/combinate' element={<CreateCombinatePage />} />
         <Route path="/add-product" element={<AddProductPage />} />
+        <Route path="/basket" element={<BasketPage />} />
     </Routes>
   )
 }
