@@ -44,11 +44,23 @@ Yapay Zeka Destekli Giyim Mağazası, kişiselleştirilmiş bir alışveriş den
 Projeyi çalıştırmak için aşağıdaki adımları izleyin:
 
 1. **Depoyu Klonlayın**:
+   
    ```bash
    git clone https://github.com/aydog4nn/Imagine-And-Combinations.git
    ```
 2. **Proje Dizinine Gidin**:
+   
    ```bash
    cd Imagine-And-Combinations.gitImagine-And-Combinations
+   ```
+3. **Paketleri Yükleyin**:
+ 
+   ```bash
+   npm install
+   ```
+4. **Uygulamayı Çalıştırın**:
+ 
+   ```bash
+   npm run dev
    ```
                                     
