@@ -6,16 +6,16 @@
 
 ## 📋 İçindekiler
 
-- [Proje Hakkında](#proje-hakkında)
-- [Özellikler](#özellikler)
-- [Kurulum](#kurulum)
-- [Kullanım](#kullanım)
-- [Bağımlılıklar](#bağımlılıklar)
-- [Yapılandırma](#yapılandırma)
-- [Örnekler](#örnekler)
-- [Sorun Giderme](#sorun-giderme)
-- [Katkıda Bulunanlar](#katkıda-bulunanlar)
-- [Lisans](#lisans)
+- Proje Hakkında
+- Özellikler
+- Kurulum
+- Kullanım
+- Ekran Görüntülerü
+- Yapılandırma
+- Örnekler
+- Sorun Giderme
+- Katkıda Bulunanlar
+- Lisans
 
 ---
 
@@ -26,6 +26,15 @@ Yapay Zeka Destekli Giyim Mağazası, kişiselleştirilmiş bir alışveriş den
 - Kullanıcılardan alınan yaş, cinsiyet, tarz tercihleri gibi veriler ışığında tavsiyeler oluşturur.
 - Modern yapay zeka algoritmalarını kullanarak kullanıcı davranışlarını analiz eder.
 - Kullanıcıların kıyafet seçimlerini kolaylaştıran kişiselleştirilmiş kombinler sunar.
+
+---
+
+##  📈 Proje Durumu 
+
+**Projeye neler eklenecek?**
+
+- Sepet sayfası arka uç ile bağlanıp dinamik hale getirilecek.
+- Loading,skeleton gibi componentler eklenip tasarım detayları tamamlanacak.
 
 ---
 
@@ -40,6 +49,8 @@ Yapay Zeka Destekli Giyim Mağazası, kişiselleştirilmiş bir alışveriş den
 - **Duyarlı Kullanıcı Arayüzü**: Farklı ekran boyutlarına uyarlanabilir düzenler.
 - **Durum Yönetimi**: Verimli durum yönetimi için Riverpod'u kullanır.
 - **Yapay Zeka Modeli Entegrasyonu**: Görüntü verilerini işlemek ve tahminler sağlamak için arka uç API'siyle iletişim kurar.
+
+> **Not**: Bu proje, React`ta yapay zeka destekli uygulamaları keşfetmek, makine öğrenimi entegrasyonunu sağlamak ve e-ticaret uygulaması geliştirmek isteyen geliştiriciler için idealdir.
 
 ---
 
@@ -67,4 +78,39 @@ Projeyi çalıştırmak için aşağıdaki adımları izleyin:
    ```bash
    npm run dev
    ```
+
+---
+
+## 📸 Ekran Görüntüleri (Screenshots)
+
+Aşağıda proje arayüzünden alınan ekran görüntüleri bulunmaktadır:
+
+| **Ana Sayfa**                | **Ana Sayfa**                
+|--------------------------------------|--------------------------------------|
+| ![Screenshot 1](./src/screenshots/projeFotografAnaSayfa.png) | ![Screenshot 2](./src/screenshots/projeFotografAnaSayfa2.png) 
+
+| **Giriş Yapma Sayfası**                | **Kayıt Olma Sayfası**                
+|--------------------------------------|--------------------------------------|
+| ![Screenshot 3](./src/screenshots/projeFotografGirisYap.png) | ![Screenshot 4](./src/screenshots/projeFotografKayitOl.png) 
+
+| **Ürünler Sayfası**                | **Ürün Detay Sayfası**                
+|--------------------------------------|--------------------------------------|
+| ![Screenshot 5](./src/screenshots/projeFotografUrunler.png) | ![Screenshot 6](./src/screenshots/projeFotografDetay.png) 
+
+| **Yan Menü(Drawer)**                | **Sepet Sayfası**                
+|--------------------------------------|--------------------------------------|
+| ![Screenshot 7](./src/screenshots/projeFotografMenu.png) | ![Screenshot 8](./src/screenshots/projeFotografSepet.png) 
+
+---
+
+## Kullanım
+
+Uygulamayı keşfetmek için Flutter'ın run komutunu kullanarak yerel ortamınızda çalıştırmanız yeterlidir. Uygulama size bir e-ticaret deneyimi sağlayacaktır. Uygulama, görüntüyü işlemek ve cinsiyet ve yaş için tahminler sağlamak üzere bir arka uç AI modeliyle iletişim kurar. Arka uç [API](https://github.com/MASalmanss/Images-and-Combinations) deposunu burada bulabilirsiniz.
+
+---
+
+## Lisans
+
+
+
                                     
