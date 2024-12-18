@@ -31,11 +31,15 @@ Yapay Zeka Destekli Giyim Mağazası, kişiselleştirilmiş bir alışveriş den
 
 ## ✨ Özellikler
 
-- **Kişiselleştirilmiş Tavsiyeler**: Kullanıcıların profiline göre en uygun kıyafet kombinlerini önerir.
-- **Yapay Zeka Tabanlı Öneri Sistemi**: Tavsiyeler, derin öğrenme ve veri analitiği ile desteklenir.
-- **Kullanıcı Dostu Arayüz**: Kolay kullanılabilir ve modern bir web arayüzüne sahiptir.
-- **Favori Seçim ve Takip Özelliği**: Kullanıcılar beğendikleri ürünleri kaydedebilir.
-- **Geniş Filtreleme Seçenekleri**: Renk, beden ve tarz gibi kriterlere göre dinamik filtreleme imkanı.
+- **Kullanıcı Kimlik Doğrulaması**: Kayıt olun ve giriş yapın.
+- **Resim Analizi**: Cinsiyet ve yaş tahmini için kullanıcının resminin yapay zeka destekli analizi.
+- **Giyim Önerileri**: Tahmini yaş ve cinsiyete göre kişiselleştirilmiş giyim önerileri.
+- **Modern Arayüz Tasarımı**: Önerilen giyim ürünlerini, promosyonları ve popüler ürünleri görüntüler.
+- **Ürün Detayları**: Ürünler hakkında beden, renk ve fiyat gibi detaylı bilgileri görüntüleyin.
+- **Ürün Kataloğu**: Ürünlerin listesini görüntüleyin, öğeleri arayın ve kategorilere göre filtreleyin.
+- **Duyarlı Kullanıcı Arayüzü**: Farklı ekran boyutlarına uyarlanabilir düzenler.
+- **Durum Yönetimi**: Verimli durum yönetimi için Riverpod'u kullanır.
+- **Yapay Zeka Modeli Entegrasyonu**: Görüntü verilerini işlemek ve tahminler sağlamak için arka uç API'siyle iletişim kurar.
 
 ---
 
