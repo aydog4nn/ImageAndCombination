@@ -105,12 +105,18 @@ Aşağıda proje arayüzünden alınan ekran görüntüleri bulunmaktadır:
 
 ## Kullanım
 
-Uygulamayı keşfetmek için Flutter'ın run komutunu kullanarak yerel ortamınızda çalıştırmanız yeterlidir. Uygulama size bir e-ticaret deneyimi sağlayacaktır. Uygulama, görüntüyü işlemek ve cinsiyet ve yaş için tahminler sağlamak üzere bir arka uç AI modeliyle iletişim kurar. Arka uç [API](https://github.com/MASalmanss/Images-and-Combinations) deposunu burada bulabilirsiniz.
+Uygulamayı keşfetmek için React`ın npm run dev komutunu kullanarak yerel ortamınızda çalıştırmanız yeterlidir. Uygulama size bir e-ticaret deneyimi sağlayacaktır. Uygulama, görüntüyü işlemek ve cinsiyet ve yaş için tahminler sağlamak üzere bir arka uç AI modeliyle iletişim kurar. Arka uç [API](https://github.com/MASalmanss/Images-and-Combinations) deposunu burada bulabilirsiniz.
 
 ---
 
 ## Lisans
 
-
-
+Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla ayrıntı için [LICENSE](./LICENSE) dosyasına bakın.
                                     
+
+
+---
+
+## İletişim
+Eğer sorularınız veya önerileriniz varsa bana [LinkedIn](https://www.linkedin.com/in/aydog4nn/) hesabimdan,
+diğer projelerime göz atmak isterseniz [Github](https://github.com/aydog4nn) bakabilirsiniz.
