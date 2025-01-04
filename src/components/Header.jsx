@@ -376,10 +376,10 @@ function Header() {
                     <Drawer open={open} onClose={toggleDrawer(false)}>
                         {DrawerList}
                     </Drawer>
-                    <UnderlinedText>
+                    <UnderlinedText onClick={() => navigate("/male")}>
                         <h6 style={{margin: 0}}>Erkek</h6>
                     </UnderlinedText>
-                    <UnderlinedText>
+                    <UnderlinedText onClick={() => navigate("/female")}>
                         <h6 style={{margin: 0}}>Kadın</h6>
                     </UnderlinedText>
                 </div>
