@@ -5,7 +5,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { IconButton } from "@mui/material";
 import { useState } from "react";
 
 function Product({ product }) {
@@ -21,6 +20,7 @@ function Product({ product }) {
     const handleLike = () => {
         setLiked(!liked); // Favori durumunu değiştir
     };
+
 
     return (
         <div>

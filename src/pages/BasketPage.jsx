@@ -17,7 +17,7 @@ import {useNavigate} from "react-router-dom";
 import image1 from "../images/fcd7b930-051c-4288-b824-d114a1370b12.jpeg"
 import image2 from "../images/14edf01e-3140-42ef-881c-cecb03f8a4e8.jpeg"
 
-const BasketPage = () => {
+const BasketPage = ({selectedP}) => {
 
     const navigate = useNavigate();
 

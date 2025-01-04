@@ -18,6 +18,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAllProduct, fetchProductsById} from "../redux/slices/ProductSlice.jsx";
 import {useNavigate, useParams} from "react-router-dom";
+import Loading from "./Loading.jsx";
 
 function ProductDetails() {
     const navigate = useNavigate();
@@ -25,10 +26,13 @@ function ProductDetails() {
     const {id} = useParams()
     const selectedProduct = useSelector((state) => state.products.selectedProduct);
     const allProducts = useSelector((state) => state.products.allProducts);
+    const loading = useSelector((state) => state.products.loading);
     useEffect(() => {
         dispatch(fetchAllProduct())
         dispatch(fetchProductsById(id))
     }, [dispatch,id]);
+
+    if (loading) return <Loading />
 
     return (
         <Container maxWidth="lg">

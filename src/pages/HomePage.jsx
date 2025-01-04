@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchCategoryById,} from "../redux/slices/CategoriesSlice.jsx";
 import {useRef} from "react";
@@ -11,14 +11,15 @@ import categoryImages3 from "../images/output (4).jpg"
 import categoryImages4 from "../images/output (5).jpg"
 import {FaArrowRight} from "react-icons/fa";
 import {AiOutlineArrowRight} from "react-icons/ai";
-
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function HomePage() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const category = useSelector((state) => state.categories.selectedCategory);
     const buttonTexts = ["Ceket", "Mont ve Kaban", "Jean", "Sweatshirt"]; // Her buton için farklı yazılar
-
+    const [isLoading, setIsLoading] = useState(true);
 
     const handleScrollDown = () => {
         if (targetDivRef.current) {
@@ -45,6 +46,32 @@ function HomePage() {
 
     const targetDivRef = useRef(null);
     const imageRef = useRef(null);
+
+
+    useEffect(() => {
+        // Simulate a delay for loading (e.g., 2 seconds)
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+
+        // Cleanup timer on unmount
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return (
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    minHeight: "100vh",
+                }}
+            >
+                <CircularProgress />
+            </Box>
+        );
+    }
 
     return (
 

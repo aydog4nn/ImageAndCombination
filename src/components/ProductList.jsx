@@ -3,17 +3,21 @@ import {useDispatch} from "react-redux";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import Product from "./Product.jsx";
+import Loading from "./Loading.jsx";
 
 
 function ProductList() {
 
     const dispatch = useDispatch();
     const {allProducts} = useSelector(state => state.products);
+    const {loading} = useSelector((state) => state.products);
 
 
     useEffect(() => {
         dispatch(fetchAllProduct());
     }, [dispatch]);
+
+    if (loading) return <Loading />
 
     return (
 
