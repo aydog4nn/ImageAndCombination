@@ -7,15 +7,13 @@
 ## 📋 İçindekiler
 
 - Proje Hakkında
+- Proje Durumu
 - Özellikler
 - Kurulum
+- Ekran Görüntüleri
 - Kullanım
-- Ekran Görüntülerü
-- Yapılandırma
-- Örnekler
-- Sorun Giderme
-- Katkıda Bulunanlar
 - Lisans
+- İletişim
 
 ---
 
